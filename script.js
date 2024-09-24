@@ -69,5 +69,80 @@
 
 
 
-2.  //IDE
+1.2  //IDE
+
 //The term IDE (Integrated Development Environment)
+
+
+//An IDE loads the project (which can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), and integrates with a version management system (like git), a testing environment, and other “project-level” stuff.
+
+//If you haven’t selected an IDE yet, consider the following options:
+
+//Visual Studio Code (cross-platform, free).
+//WebStorm (cross-platform, paid).
+
+
+
+
+1.3 //Developer console 
+
+//Developer tools allow us to see errors, run commands, examine variables, and much more.
+//They can be opened with F12 for most browsers on Windows. Chrome for Mac needs Cmd+Opt+J, Safari: Cmd+Opt+C (need to enable first).
+
+
+
+
+
+2. //The “script” tag
+
+
+//We can use a <script> tag to add JavaScript code to a page.
+//The type and language attributes are not required.
+//A script in an external file can be inserted with <script src="path/to/script.js"></script>.
+
+
+2.1 // Comments
+
+
+//One-line comments start with two forward slash characters //.
+
+
+//Multiline comments start with a forward slash and an asterisk /* and end with an asterisk and a forward slash */.
+
+//Nested comments are not supported!
+//There may not be /*...*/ inside another /*...*/.
+
+
+2.2 //“use strict”
+
+//The directive looks like a string: "use strict" or 'use strict'. When it is located at the top of a script, the whole script works the “modern” way.
+
+
+
+2.3 //A variable
+
+//A variable is a “named storage” for data. We can use variables to store goodies, visitors, and other data.
+
+
+
+2.4  //Variable naming
+
+//There are two limitations on variable names in JavaScript:
+
+//The name must contain only letters, digits, or the symbols $ and _.
+//The first character must not be a digit.
+
+//When the name contains multiple words, camelCase is commonly used. That is: words go one after another, each word except first starting with a capital letter: myVeryLongName.
+
+//What’s interesting – the dollar sign '$' and the underscore '_' can also be used in names. They are regular symbols, just like letters, without any special meaning.
+
+//We can declare variables to store data by using the var, let, or const keywords.
+
+//let – is a modern variable declaration.
+//var – is an old-school variable declaration. Normally we don’t use it at all, but we’ll cover subtle differences from let in the chapter The old "var", just in case you need them.
+//const – is like let, but the value of the variable can’t be changed.
+//Variables should be named in a way that allows us to easily understand what’s inside them.
+
+
+
+3. //Data types
