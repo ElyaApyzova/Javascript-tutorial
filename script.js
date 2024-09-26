@@ -312,3 +312,57 @@ typeof alert // "function"  (3)
 
 
 4. //Interaction: alert, prompt, confirm
+
+
+4.1 //alert
+//It shows a message and waits for the user to press “OK”.
+
+//For example:
+
+alert("Hello");
+
+
+4.2 //prompt
+//The function prompt accepts two arguments:
+
+`
+result = prompt(title, [default]);
+`
+
+//It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
+
+`
+title
+The text to show the visitor.
+
+default
+An optional second parameter, the initial value for the input field.
+
+`
+
+let ageShow = prompt('How old are you?', 100);
+
+alert(`You are ${ageShow} years old!`); // You are 100 years old!
+
+
+4.3 //confirm
+
+//The function confirm shows a modal window with a question and two buttons: OK and Cancel.
+
+//The result is true if OK is pressed and false otherwise.
+
+
+let isBoss = confirm("Are you the boss?");
+
+alert( isBoss ); // true if OK is pressed
+
+//There are two limitations shared by all the methods above:
+
+//The exact location of the modal window is determined by the browser. Usually, it’s in the center.
+//The exact look of the window also depends on the browser. We can’t modify it.
+
+
+`
+let name = prompt("What is your name?", "");
+alert(name);
+`
