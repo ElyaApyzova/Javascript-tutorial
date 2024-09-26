@@ -366,3 +366,60 @@ alert( isBoss ); // true if OK is pressed
 let name = prompt("What is your name?", "");
 alert(name);
 `
+
+
+
+
+5. //Type Conversions
+
+
+alert( Number("   123   ") ); // 123
+alert( Number("123z") );      // NaN (error reading a number at "z")
+alert( Number(true) );        // 1
+alert( Number(false) );       // 0
+
+
+
+alert( Boolean(1) ); // true
+alert( Boolean(0) ); // false
+
+alert( Boolean("hello") ); // true
+alert( Boolean("") ); // false
+
+
+
+//the string with zero "0" is true
+
+alert( Boolean("0") ); // true
+alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
+
+
+//The three most widely used type conversions are to string, to number, and to boolean.
+
+//String Conversion – Occurs when we output something. Can be performed with String(value). The conversion to string is usually obvious for primitive values.
+
+//Numeric Conversion – Occurs in math operations. Can be performed with Number(value).
+
+`
+undefined	NaN
+
+null	0
+
+true / false	1 / 0
+
+string	The string is read “as is”, whitespaces (includes spaces, tabs \t, newlines \n etc.) from both sides are ignored. An empty string becomes 0. An error gives NaN.
+`
+
+//Boolean Conversion – Occurs in logical operations. Can be performed with Boolean(value).
+
+
+
+`
+Value	                      Becomes…
+
+0, null, undefined, NaN, ""	   false
+
+any other value	                true
+
+`
+
