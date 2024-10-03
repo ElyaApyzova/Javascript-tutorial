@@ -428,7 +428,7 @@ any other value	                true
 6.  // Basic operators, maths
 
 
-//Terms: “unary”, “binary”, “operand”
+6.1 //Terms: “unary”, “binary”, “operand”
 
 //An operand – is what operators are applied to. For instance, in the multiplication of 5 * 2 there are two operands: the left operand is 5 and the right operand is 2. Sometimes, people call these “arguments” instead of “operands”.
 
@@ -448,4 +448,323 @@ let x = 1, y = 3;
 alert( y - x ); // 2, binary minus subtracts values
 
 `
+
+6.2 // Maths
+//The following math operations are supported:
+
+`
+Addition +,
+Subtraction -,
+Multiplication *,
+Division /,
+Remainder %,
+Exponentiation **.
+
+`
+
+
+6.3//Remainder %
+//The remainder operator %, despite its appearance, is not related to percents.
+
+//The result of a % b is the remainder of the integer division of a by b.
+
+//For instance:
+
+alert( 5 % 2 ); // 1, the remainder of 5 divided by 2
+alert( 8 % 3 ); // 2, the remainder of 8 divided by 3
+alert( 8 % 4 ); // 0, the remainder of 8 divided by 4
+
+
+6.4 //Exponentiation **
+
+//The exponentiation operator a ** b raises a to the power of b.
+
+//For instance:
+
+alert( 2 ** 2 ); // 2² = 4
+alert( 2 ** 3 ); // 2³ = 8
+alert( 2 ** 4 ); // 2⁴ = 16
+
+
+6.5 //String concatenation with binary +
+
+
+alert( '1' + 2 ); // "12"
+alert( 2 + '1' ); // "21"
+
+alert(2 + 2 + '1' ); // "41" and not "221"
+//operators work one after another. The first + sums two numbers, so it returns 4, then the next + adds the string 1 to it, so it’s like 4 + '1' = '41'.
+
+
+alert('1' + 2 + 2); // "122" and not "14"
+//the first operand is a string, the compiler treats the other two operands as strings too. The 2 gets concatenated to '1', so it’s like '1' + 2 = "12" and "12" + 2 = "122".
+
+//The binary + is the only operator that supports strings in such a way. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+alert( 6 - '2' ); // 4, converts '2' to a number
+alert( '6' / '2' ); // 3, converts both operands to numbers
+
+
+6.6 // Numeric conversion, unary +
+
+//The binary plus would add them as strings:
+
+let apples = "2";
+let oranges = "3";
+
+alert( apples + oranges ); // "23", the binary plus concatenates strings
+
+
+//If we want to treat them as numbers, we need to convert and then sum them:
+
+let apps = "2";
+let orans = "3";
+
+// both values converted to numbers before the binary plus
+alert( +apps + +orans ); // 5
+
+// the longer variant
+// alert( Number(apples) + Number(oranges) ); // 5
+
+//unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
+
+
+
+6.7//Operator precedence
+
+//There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the larger number executes first. If the precedence is the same, the execution order is from left to right.
+
+//Here’s an extract from the precedence table (you don’t need to remember this, but note that unary operators are higher than corresponding binary ones):
+
+
+`
+Precedence	                   Name	                              Sign
+
+14	                           unary plus	                       +
+14	                           unary negation	                   -
+13	                           exponentiation	                   **
+12	                           multiplication	                   *
+12	                           division	                           /
+11	                           addition	                           +
+11	                           subtraction	                       -
+
+2	                           assignment	                       =
+
+`
+
+//As we can see, the “unary plus” has a priority of 14 which is higher than the 11 of “addition” (binary plus). That’s why, in the expression "+apples + +oranges", unary pluses work before the addition.
+
+
+6.8 //Assignment
+
+
+//Let’s note that an assignment = is also an operator. It is listed in the precedence table with the very low priority of 2.
+
+//when we assign a variable, like x = 2 * 2 + 1, the calculations are done first and then the = is evaluated, storing the result in x.
+
+let d = 2 * 2 + 1;
+
+alert( d ); // 5
+
+
+//Assignment = returns a value
+
+let a = 1;
+let b = 2;
+
+let c = 3 - (a = b + 1);
+
+alert( a ); // 3
+alert( c ); // 0
+
+//In the example above, the result of expression (a = b + 1) is the value which was assigned to a (that is 3). It is then used for further evaluations.
+//Although, please don’t write the code like that. Such tricks definitely don’t make code clearer or readable.
+
+
+//Chaining assignments
+//Another interesting feature is the ability to chain assignments:
+
+`
+let a, b, c;
+
+a = b = c = 2 + 2;
+
+alert( a ); // 4
+alert( b ); // 4
+alert( c ); // 4
+`
+//Chained assignments evaluate from right to left. First, the rightmost expression 2 + 2 is evaluated and then assigned to the variables on the left: c, b and a. At the end, all the variables share a single value.
+
+//Once again, for the purposes of readability it’s better to split such code into few lines:
+
+c = 2 + 2;
+b = c;
+a = c;
+
+//Modify-in-place
+//We often need to apply an operator to a variable and store the new result in that same variable.
+
+//For example:
+
+`
+let n = 2;
+n = n + 5;
+n = n * 2;
+//This notation can be shortened using the operators += and *=:
+
+let n = 2;
+n += 5; // now n = 7 (same as n = n + 5)
+n *= 2; // now n = 14 (same as n = n * 2)
+
+alert( n ); // 14
+`
+//Short “modify-and-assign” operators exist for all arithmetical and bitwise operators: /=, -=, etc.
+
+
+//Such operators have the same precedence as a normal assignment, so they run after most other calculations:
+
+`
+let n = 2;
+
+n *= 3 + 5; // right part evaluated first, same as n *= 8
+
+alert( n ); // 16
+
+`
+
+6.9 //Increment/decrement
+
+//Increment ++ increases a variable by 1:
+
+let counter = 2;
+counter++;        // works the same as counter = counter + 1, but is shorter
+alert( counter ); // 3
+
+
+//Decrement -- decreases a variable by 1:
+
+let counter2 = 2;
+counter2--;        // works the same as counter = counter - 1, but is shorter
+alert( counter2 ); // 1
+
+
+//Important:
+//Increment/decrement can only be applied to variables. Trying to use it on a value like 5++ will give an error.
+
+
+//The operators ++ and -- can be placed either before or after a variable.
+
+//When the operator goes after the variable, it is in “postfix form”: counter++.
+//The “prefix form” is when the operator goes before the variable: ++counter.
+//Both of these statements do the same thing: increase counter by 1.
+
+//Is there any difference? Yes, but we can only see it if we use the returned value of ++/--.
+
+//Let’s clarify. As we know, all operators return a value. Increment/decrement is no exception. The prefix form returns the new value while the postfix form returns the old value (prior to increment/decrement).
+
+//To see the difference, here’s an example:
+
+`
+let counter = 1;
+let a = ++counter; // (*)
+
+alert(a); // 2
+`
+
+//Now, let’s use the postfix form:
+
+`
+let counter = 1;
+let a = counter++; // (*) changed ++counter to counter++
+
+alert(a); // 1
+`
+
+//In the line (*), the postfix form counter++ also increments counter but returns the old value (prior to increment). So, the alert shows 1.
+
+
+//To summarize:
+
+//If the result of increment/decrement is not used, there is no difference in which form to use:
+
+`
+let counter = 0;
+counter++;
+++counter;
+alert( counter ); // 2, the lines above did the same
+`
+//If we’d like to increase a value and immediately use the result of the operator, we need the prefix form:
+
+`
+let counter = 0;
+alert( ++counter ); // 1
+
+`
+//If we’d like to increment a value but use its previous value, we need the postfix form:
+
+`
+let counter = 0;
+alert( counter++ ); // 0
+`
+
+
+//Increment/decrement among other operators
+//The operators ++/-- can be used inside expressions as well. Their precedence is higher than most other arithmetical operations.
+
+//For instance:
+
+`
+let counter = 1;
+alert( 2 * ++counter ); // 4
+`
+//Compare with:
+
+`
+let counter = 1;
+alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
+`
+//Though technically okay, such notation usually makes code less readable. One line does multiple things – not good.
+
+//While reading code, a fast “vertical” eye-scan can easily miss something like counter++ and it won’t be obvious that the variable increased.
+
+//We advise a style of “one line – one action”:
+
+`
+let counter = 1;
+alert( 2 * counter );
+counter++;
+`
+
+6.10 //
+
+
+//Bitwise operators
+//Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
+
+//These operators are not JavaScript-specific. They are supported in most programming languages.
+
+//The list of operators:
+
+`
+AND ( & )
+OR ( | )
+XOR ( ^ )
+NOT ( ~ )
+LEFT SHIFT ( << )
+RIGHT SHIFT ( >> )
+ZERO-FILL RIGHT SHIFT ( >>> )
+`
+//These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won’t need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful.
+
+6.11 //Comma
+
+// For example:
+
+// three operations in one line
+for (a = 1, b = 3, c = a * b; a < 10; a++) {
+    //...
+   }
+   //Such tricks are used in many JavaScript frameworks. That’s why we’re mentioning them. But usually they don’t improve code readability so we should think well before using them.
+
+
+   
 
