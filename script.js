@@ -1074,7 +1074,7 @@ null === +"\n0\n" → false
 //To do that, we can use the if statement and the conditional operator ?, that’s also called a “question mark” operator.
 
 
-//The “if” statement
+8.1//The “if” statement
 
 //The if(...) statement evaluates a condition in parentheses and, if the result is true, executes a block of code.
 
@@ -1096,3 +1096,46 @@ if (year == 2015) {
 
 //Several conditions: “else if”
 
+//Sometimes, we’d like to test several variants of a condition. The else if clause lets us do that.
+
+//For example:
+
+`
+let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
+
+if (year < 2015) {
+  alert( 'Too early...' );
+} else if (year > 2015) {
+  alert( 'Too late' );
+} else {
+  alert( 'Exactly!' );
+}
+
+`
+
+
+//In the code above, JavaScript first checks year < 2015. If that is falsy, it goes to the next condition year > 2015. If that is also falsy, it shows the last alert.
+
+//There can be more else if blocks. The final else is optional.
+
+
+
+8.2 //Conditional operator ‘?’
+
+//Sometimes, we need to assign a variable depending on a condition.
+
+//The so-called “conditional” or “question mark” operator lets us do that in a shorter and simpler way.
+
+//The operator is represented by a question mark ?. Sometimes it’s called “ternary”, because the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
+
+//The syntax is:
+
+`
+let result = condition ? value1 : value2;
+`
+
+//The condition is evaluated: if it’s truthy then value1 is returned, otherwise – value2.
+
+//For example:
+
+let accessAllowed = (age > 18) ? true : false;
