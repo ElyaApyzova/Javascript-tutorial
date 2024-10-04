@@ -1065,3 +1065,34 @@ null == "\n0\n" → false
 null === +"\n0\n" → false
 
 `
+
+
+8. // Conditional branching: if, '?'
+
+//Sometimes, we need to perform different actions based on different conditions.
+
+//To do that, we can use the if statement and the conditional operator ?, that’s also called a “question mark” operator.
+
+
+//The “if” statement
+
+//The if(...) statement evaluates a condition in parentheses and, if the result is true, executes a block of code.
+
+
+//The “else” clause
+//The if statement may contain an optional else block. It executes when the condition is falsy.
+
+//For example:
+
+let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
+
+if (year == 2015) {
+  alert( 'You guessed it right!' );
+} else {
+  alert( 'How can you be so wrong?' ); // any value except 2015
+}
+
+
+
+//Several conditions: “else if”
+
