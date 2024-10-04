@@ -766,5 +766,302 @@ for (a = 1, b = 3, c = a * b; a < 10; a++) {
    //Such tricks are used in many JavaScript frameworks. That’s why we’re mentioning them. But usually they don’t improve code readability so we should think well before using them.
 
 
-   
 
+
+   //Tasks
+
+//What are the final values of all variables a, b, c and d after the code below?
+
+`
+let a = 1, b = 1;
+
+let c = ++a; // ?
+let d = b++; // ?
+`
+
+
+//The answer is:
+
+`
+a = 2
+b = 2
+c = 2
+d = 1
+let a = 1, b = 1;
+
+alert( ++a ); // 2, prefix form returns the new value
+alert( b++ ); // 1, postfix form returns the old value
+
+alert( a ); // 2, incremented once
+alert( b ); // 2, incremented once
+`
+
+//Assignment result
+
+//What are the values of a and x after the code below?
+
+`
+let a = 2;
+
+let x = 1 + (a *= 2);
+`
+
+
+//The answer is:
+
+`
+a = 4 (multiplied by 2)
+x = 5 (calculated as 1 + 4)
+`
+
+//Type conversions
+
+//What are results of these expressions?
+
+
+`
+"" + 1 + 0 = "10" // (1)
+"" - 1 + 0 = -1 // (2)
+true + false = 1
+6 / "3" = 2
+"2" * "3" = 6
+4 + 5 + "px" = "9px"
+"$" + 4 + 5 = "$45"
+"4" - 2 = 2
+"4px" - 2 = NaN
+"  -9  " + 5 = "  -9  5" // (3)
+"  -9  " - 5 = -14 // (4)
+null + 1 = 1 // (5)
+undefined + 1 = NaN // (6)
+" \t \n" - 2 = -2 // (7)
+
+`
+
+//Fix the addition
+
+//Here’s a code that asks the user for two numbers and shows their sum.
+
+//It works incorrectly. The output in the example below is 12 (for default prompt values).
+
+//Why? Fix it. The result should be 3.
+
+`
+let a = prompt("First number?", 1);
+let b = prompt("Second number?", 2);
+
+alert(a + b); // 12
+`
+
+//What we should do is to convert strings to numbers before +. For example, using Number() or prepending them with +.
+
+//For example, right before prompt:
+
+`
+let a = +prompt("First number?", 1);
+let b = +prompt("Second number?", 2);
+
+alert(a + b); // 3
+
+`
+//Or in the alert:
+
+`
+let a = prompt("First number?", 1);
+let b = prompt("Second number?", 2);
+
+alert(+a + +b); // 3
+`
+//Using both unary and binary + in the latest code. Looks funny, doesn’t it?
+
+
+
+
+7. //Comparisons
+
+//Greater/less than: a > b, a < b.
+//Greater/less than or equals: a >= b, a <= b.
+
+
+//Equals: a == b, please note the double equality sign == means the equality test, while a single one a = b means an assignment.
+
+//Not equals: In JavaScript it’s written as a != b.
+
+
+7.1//Boolean is the result
+//All comparison operators return a boolean value:
+
+//true – means “yes”, “correct” or “the truth”.
+//false – means “no”, “wrong” or “not the truth”.
+
+
+//For example:
+
+alert( 2 > 1 );  // true (correct)
+alert( 2 == 1 ); // false (wrong)
+alert( 2 != 1 ); // true (correct)
+//A comparison result can be assigned to a variable, just like any value:
+
+let result = 5 > 4; // assign the result of the comparison
+alert( result ); // true
+
+
+7.2//String comparison
+//To see whether a string is greater than another, JavaScript uses the so-called “dictionary” or “lexicographical” order.
+
+//In other words, strings are compared letter-by-letter.
+
+//For example:
+
+alert( 'Z' > 'A' ); // true
+alert( 'Glow' > 'Glee' ); // true
+alert( 'Bee' > 'Be' ); // true
+
+
+//The algorithm to compare two strings is simple:
+
+//Compare the first character of both strings.
+//If the first character from the first string is greater (or less) than the other string’s, then the first string is greater (or less) than the second. We’re done.
+//Otherwise, if both strings’ first characters are the same, compare the second characters the same way.
+//Repeat until the end of either string.
+//If both strings end at the same length, then they are equal. Otherwise, the longer string is greater.
+//In the first example above, the comparison 'Z' > 'A' gets to a result at the first step.
+
+//The second comparison 'Glow' and 'Glee' needs more steps as strings are compared character-by-character:
+
+//G is the same as G.
+//l is the same as l.
+//o is greater than e. Stop here. The first string is greater.
+
+
+//A capital letter "A" is not equal to the lowercase "a". Which one is greater? The lowercase "a". Why? Because the lowercase character has a greater index in the internal encoding table JavaScript uses (Unicode).
+
+
+7.3 //Comparison of different types
+//When comparing values of different types, JavaScript converts the values to numbers.
+
+//For example:
+
+alert( '2' > 1 ); // true, string '2' becomes a number 2
+alert( '01' == 1 ); // true, string '01' becomes a number 1
+
+//For boolean values, true becomes 1 and false becomes 0.
+
+//For example:
+
+alert( true == 1 ); // true
+alert( false == 0 ); // true
+
+
+//A funny consequence
+//It is possible that at the same time:
+
+//Two values are equal.
+//One of them is true as a boolean and the other one is false as a boolean.
+//For example:
+
+`
+let a = 0;
+alert( Boolean(a) ); // false
+
+let b = "0";
+alert( Boolean(b) ); // true
+
+alert(a == b); // true!
+`
+//From JavaScript’s standpoint, this result is quite normal. An equality check converts values using the numeric conversion (hence "0" becomes 0), while the explicit Boolean conversion uses another set of rules.
+
+
+7.4 //Strict equality
+//A regular equality check == has a problem. It cannot differentiate 0 from false:
+
+alert( 0 == false ); // true
+//The same thing happens with an empty string:
+
+alert( '' == false ); // true
+//This happens because operands of different types are converted to numbers by the equality operator ==. An empty string, just like false, becomes a zero.
+
+//What to do if we’d like to differentiate 0 from false?
+
+
+
+//A strict equality operator === checks the equality without type conversion.
+
+//In other words, if a and b are of different types, then a === b immediately returns false without an attempt to convert them.
+
+//Let’s try it:
+
+alert( 0 === false ); // false, because the types are different
+//There is also a “strict non-equality” operator !== analogous to !=.
+
+//The strict equality operator is a bit longer to write, but makes it obvious what’s going on and leaves less room for errors.
+
+
+
+7.5 //Comparison with null and undefined
+
+alert( null === undefined ); // false
+
+alert( null == undefined ); // true
+
+
+//Let’s compare null with a zero:
+
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) true
+
+
+//An incomparable undefined
+//The value undefined shouldn’t be compared to other values:
+
+alert( undefined > 0 ); // false (1)
+alert( undefined < 0 ); // false (2)
+alert( undefined == 0 ); // false (3)
+
+
+//Avoid problems
+
+
+//Treat any comparison with undefined/null except the strict equality === with exceptional care.
+
+//Don’t use comparisons >= > < <= with a variable which may be null/undefined, unless you’re really sure of what you’re doing. If a variable can have these values, check for them separately.
+
+
+`
+Summary
+
+Comparison operators return a boolean value.
+
+Strings are compared letter-by-letter in the “dictionary” order.
+
+When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
+
+The values null and undefined equal == each other and do not equal any other value.
+
+Be careful when using comparisons like > or < with variables that can occasionally be null/undefined. Checking for null/undefined separately is a good idea.
+`
+
+//Tasks
+
+
+//Comparisons
+
+//What will be the result for these expressions?
+
+
+`
+5 > 4 → true
+
+"apple" > "pineapple" → false
+
+"2" > "12" → true
+
+undefined == null → true
+
+undefined === null → false
+
+null == "\n0\n" → false
+
+null === +"\n0\n" → false
+
+`
