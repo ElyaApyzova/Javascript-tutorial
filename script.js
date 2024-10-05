@@ -1139,3 +1139,166 @@ let result = condition ? value1 : value2;
 //For example:
 
 let accessAllowed = (age > 18) ? true : false;
+
+
+//Please note:
+//In the example above, you can avoid using the question mark operator because the comparison itself returns true/false:
+
+// the same
+
+`
+let accessAllowed = age > 18;
+`
+
+8.3 //Multiple ‘?’
+
+
+`
+let age = prompt('age?', 18);
+
+let message = (age < 3) ? 'Hi, baby!' :
+  (age < 18) ? 'Hello!' :
+  (age < 100) ? 'Greetings!' :
+  'What an unusual age!';
+
+alert( message );
+`
+
+if (age < 3) {
+  message = 'Hi, baby!';
+} else if (age < 18) {
+  message = 'Hello!';
+} else if (age < 100) {
+  message = 'Greetings!';
+} else {
+  message = 'What an unusual age!';
+}
+
+
+8.4 // Non-traditional use of ‘?’
+
+
+//It’s not recommended to use the question mark operator in this way.
+
+//The notation is shorter than the equivalent if statement, which appeals to some programmers. But it is less readable.
+
+//Here is the same code using if for comparison:
+
+let company = prompt('Which company created JavaScript?', '');
+
+if (company == 'Netscape') {
+  alert('Right!');
+} else {
+  alert('Wrong.');
+}
+
+
+//Tasks
+
+//if (a string with zero)
+
+//Will alert be shown?
+
+if ("0") {
+  alert( 'Hello' );
+}
+
+//Yes, it will.
+
+//Any string except an empty one (and "0" is not empty) becomes true in the logical context.
+
+
+2. //The name of JavaScript
+
+//Using the if..else construct, write the code which asks: ‘What is the “official” name of JavaScript?’
+
+//If the visitor enters “ECMAScript”, then output “Right!”, otherwise – output: “You don’t know? ECMAScript!”
+
+`
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    'use strict';
+
+    let value = prompt('What is the "official" name of JavaScript?', '');
+
+    if (value == 'ECMAScript') {
+      alert('Right!');
+    } else {
+      alert("You don't know? ECMAScript!");
+    }
+  </script>
+
+
+</body>
+
+</html>
+`
+
+3. //Show the sign
+
+//Using if..else, write the code which gets a number via prompt and then shows in alert:
+
+//1,if the value is greater than zero,
+//-1,if less than zero,
+//0,if equals zero.
+
+let value = prompt('Type a number', 0);
+
+if (value > 0) {
+  alert( 1 );
+} else if (value < 0) {
+  alert( -1 );
+} else {
+  alert( 0 );
+}
+
+
+4. //Rewrite 'if' into '?'
+
+//Rewrite this if using the conditional operator '?':
+
+`
+let result;
+
+if (a + b < 4) {
+  result = 'Below';
+} else {
+  result = 'Over';
+}
+`
+
+`
+let result = (a + b < 4) ? 'Below' : 'Over';
+`
+
+
+5. //Rewrite 'if..else' into '?'
+
+//Rewrite if..else using multiple ternary operators '?'.
+
+//For readability, it’s recommended to split the code into multiple lines.
+
+let message;
+
+if (login == 'Employee') {
+  message = 'Hello';
+} else if (login == 'Director') {
+  message = 'Greetings';
+} else if (login == '') {
+  message = 'No login';
+} else {
+  message = '';
+}
+
+
+
+`
+let message = (login == 'Employee') ? 'Hello' :
+  (login == 'Director') ? 'Greetings' :
+  (login == '') ? 'No login' :
+  '';
+
+`
