@@ -1782,3 +1782,12 @@ height = height ?? 100;
 //The operator ?? has a very low precedence, only a bit higher than ? and =, so consider adding parentheses when using it in an expression.
 
 //It’s forbidden to use it with || or && without explicit parentheses.
+
+
+11. //Loops: while and for
+
+//We often need to repeat actions.
+
+//For example, outputting goods from a list one after another or just running the same code for each number from 1 to 10.
+
+//Loops are a way to repeat the same code multiple times.
