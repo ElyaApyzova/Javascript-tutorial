@@ -1791,3 +1791,68 @@ height = height ?? 100;
 //For example, outputting goods from a list one after another or just running the same code for each number from 1 to 10.
 
 //Loops are a way to repeat the same code multiple times.
+
+11.1 // The “while” loop
+//The while loop has the following syntax:
+
+while (condition) {
+  // code
+  // so-called "loop body"
+}
+
+
+//While the condition is truthy, the code from the loop body is executed.
+
+//For instance, the loop below outputs i while i < 3:
+
+let i = 0;
+while (i < 3) { // shows 0, then 1, then 2
+  alert( i );
+  i++;
+}
+
+// A single execution of the loop body is called an iteration. The loop in the example above makes three iterations.
+
+//If i++ was missing from the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and in server-side JavaScript, we can kill the process.
+
+//Any expression or variable can be a loop condition, not just comparisons: the condition is evaluated and converted to a boolean by while.
+
+//For instance, a shorter way to write while (i != 0) is while (i):
+
+let j = 3;
+while (j) { // when i becomes 0, the condition becomes falsy, and the loop stops
+  alert( j );
+  j--;
+}
+
+//Curly braces are not required for a single-line body
+//If the loop body has a single statement, we can omit the curly braces {…}:
+
+let k = 3;
+while (k) alert(k--);
+
+
+11.2 //The “do…while” loop
+
+//The condition check can be moved below the loop body using the do..while syntax:
+
+do {
+  // loop body
+} while (condition);
+
+
+//The loop will first execute the body, then check the condition, and, while it’s truthy, execute it again and again.
+
+//For example:
+
+let l = 0;
+do {
+  alert( l );
+  l++;
+} while (l < 3);
+
+
+//This form of syntax should only be used when you want the body of the loop to execute at least once regardless of the condition being truthy. Usually, the other form is preferred: while(…) {…}.
+
+
+11.3 //The “for” loop
