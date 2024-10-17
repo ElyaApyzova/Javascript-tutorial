@@ -1856,3 +1856,106 @@ do {
 
 
 11.3 //The “for” loop
+
+//The for loop is more complex, but it’s also the most commonly used loop.
+
+//It looks like this:
+
+for (begin; condition; step) {
+  // ... loop body ...
+}
+
+
+//Let’s learn the meaning of these parts by example. The loop below runs alert(i) for i from 0 up to (but not including) 3:
+
+for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
+  alert(i);
+}
+
+//Let’s examine the for statement part-by-part:
+
+		
+//begin	let i = 0	Executes once upon entering the loop.
+//condition	i < 3	Checked before every loop iteration. If false, the loop stops.
+//body	alert(i)	Runs again and again while the condition is truthy.
+//step	i++	Executes after the body on each iteration.
+
+
+//The general loop algorithm works like this:
+
+//Run begin
+//→ (if condition → run body and run step)
+//→ (if condition → run body and run step)
+//→ (if condition → run body and run step)
+//→ ...
+
+//That is, begin executes once, and then it iterates: after each condition test, body and step are executed.
+
+
+//Here’s exactly what happens in our case:
+
+// for (let i = 0; i < 3; i++) alert(i)
+
+// run begin
+`let i = 0`
+// if condition → run body and run step
+if (i < 3) { alert(i); i++ }
+// if condition → run body and run step
+if (i < 3) { alert(i); i++ }
+// if condition → run body and run step
+if (i < 3) { alert(i); i++ }
+// ...finish, because now i == 3
+
+
+//Inline variable declaration
+//Here, the “counter” variable i is declared right in the loop. This is called an “inline” variable declaration. Such variables are visible only inside the loop.
+
+`for (let i = 0; i < 3; i++) {
+  alert(i); // 0, 1, 2
+}
+alert(i); // error, no such variable`
+
+//Instead of defining a variable, we could use an existing one:
+
+`let i = 0;
+
+for (i = 0; i < 3; i++) { // use an existing variable
+  alert(i); // 0, 1, 2
+}
+
+alert(i); // 3, visible, because declared outside of the loop`
+
+
+//Skipping parts
+
+//Any part of for can be skipped.
+
+//For example, we can omit begin if we don’t need to do anything at the loop start.
+
+//Like here:
+
+`let i = 0; // we have i already declared and assigned
+
+for (; i < 3; i++) { // no need for "begin"
+  alert( i ); // 0, 1, 2
+}`
+
+//We can also remove the step part:
+
+`let i = 0;
+
+for (; i < 3;) {
+  alert( i++ );
+}`
+
+//This makes the loop identical to while (i < 3).
+
+//We can actually remove everything, creating an infinite loop:
+
+`for (;;) {
+  // repeats without limits
+}`
+//Please note that the two for semicolons ; must be present. Otherwise, there would be a syntax error.
+
+
+11.4 //Breaking the loop
