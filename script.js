@@ -1959,3 +1959,143 @@ for (; i < 3;) {
 
 
 11.4 //Breaking the loop
+
+//Normally, a loop exits when its condition becomes falsy.
+
+//But we can force the exit at any time using the special break directive.
+
+//For example, the loop below asks the user for a series of numbers, “breaking” when no number is entered:
+
+let sum = 0;
+
+while (true) {
+
+  let value = +prompt("Enter a number", '');
+
+  if (!value) break; // (*)
+
+  sum += value;
+
+}
+alert( 'Sum: ' + sum );
+
+
+//The break directive is activated at the line (*) if the user enters an empty line or cancels the input. It stops the loop immediately, passing control to the first line after the loop. Namely, alert.
+
+//The combination “infinite loop + break as needed” is great for situations when a loop’s condition must be checked not in the beginning or end of the loop, but in the middle or even in several places of its body.
+
+
+11.5  //Continue to the next iteration
+
+//The continue directive is a “lighter version” of break. It doesn’t stop the whole loop. Instead, it stops the current iteration and forces the loop to start a new one (if the condition allows).
+
+//We can use it if we’re done with the current iteration and would like to move on to the next one.
+
+//The loop below uses continue to output only odd values:
+
+for (let i = 0; i < 10; i++) {
+
+  // if true, skip the remaining part of the body
+  if (i % 2 == 0) continue;
+
+  alert(i); // 1, then 3, 5, 7, 9
+}
+
+//For even values of i, the continue directive stops executing the body and passes control to the next iteration of for (with the next number). So the alert is only called for odd values.
+
+
+//The continue directive helps decrease nesting
+
+//A loop that shows odd values could look like this:
+
+for (let i = 0; i < 10; i++) {
+
+  if (i % 2) {
+    alert( i );
+  }
+
+}
+
+//From a technical point of view, this is identical to the example above. Surely, we can just wrap the code in an if block instead of using continue.
+
+//But as a side effect, this created one more level of nesting (the alert call inside the curly braces). If the code inside of if is longer than a few lines, that may decrease the overall readability.
+
+`No break/continue to the right side of ‘?’
+Please note that syntax constructs that are not expressions cannot be used with the ternary operator ?. In particular, directives such as break/continue aren’t allowed there.`
+
+
+11.6 //Labels for break/continue
+
+//Sometimes we need to break out from multiple nested loops at once.
+
+//We need a way to stop the process if the user cancels the input.
+
+//The ordinary break after input would only break the inner loop. That’s not sufficient – labels, come to the rescue!
+
+//A label is an identifier with a colon before a loop:
+
+`labelName: for (...) {
+  ...
+}`
+//The break <labelName> statement in the loop below breaks out to the label:
+
+outer: for (let i = 0; i < 3; i++) {
+
+  for (let j = 0; j < 3; j++) {
+
+    let input = prompt(`Value at coords (${i},${j})`, '');
+
+    // if an empty string or canceled, then break out of both loops
+    if (!input) break outer; // (*)
+
+    // do something with the value...
+  }
+}
+
+alert('Done!');
+
+
+//In the code above, break outer looks upwards for the label named outer and breaks out of that loop.
+
+//So the control goes straight from (*) to alert('Done!').
+
+//We can also move the label onto a separate line:
+
+outer:
+`for (let i = 0; i < 3; i++) { ... }`
+
+//The continue directive can also be used with a label. In this case, code execution jumps to the next iteration of the labeled loop.
+
+`Labels do not allow to “jump” anywhere
+Labels do not allow us to jump into an arbitrary place in the code.
+
+For example, it is impossible to do this:
+
+break label; // jump to the label below (doesn't work)
+
+label: for (...)
+A break directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+
+label: {
+  // ...
+  break label; // works
+  // ...
+}
+…Although, 99.9% of the time break is used inside loops, as we’ve seen in the examples above.
+
+A continue is only possible from inside a loop.`
+
+
+Summary
+
+//We covered 3 types of loops:
+
+1. //while – The condition is checked before each iteration.
+2. //do..while – The condition is checked after each iteration.
+3. //for (;;) – The condition is checked before each iteration, additional settings available.
+
+4.//To make an “infinite” loop, usually the while(true) construct is used. Such a loop, just like any other, can be stopped with the break directive.
+
+5.//If we don’t want to do anything in the current iteration and would like to forward to the next one, we can use the continue directive.
+
+6.//break/continue support labels before the loop. A label is the only way for break/continue to escape a nested loop to go to an outer one.
