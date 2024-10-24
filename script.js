@@ -2228,3 +2228,204 @@ for (let i = 2; i <= n; i++) { // for each i...
 
 //It gives a more descriptive way to compare a value with multiple variants.
 
+
+12.1 //The syntax
+
+
+//The switch has one or more case blocks and an optional default.
+
+//It looks like this:
+
+`switch(x) {
+  case 'value1':  // if (x === 'value1')
+    ...
+    [break]
+
+  case 'value2':  // if (x === 'value2')
+    ...
+    [break]
+
+  default:
+    ...
+    [break]
+}`
+
+//The value of x is checked for a strict equality to the value from the first case (that is, value1) then to the second (value2) and so on.
+//If the equality is found, switch starts to execute the code starting from the corresponding case, until the nearest break (or until the end of switch).
+//If no case is matched then the default code is executed (if it exists).
+
+
+`let a = 2 + 2;
+
+switch (a) {
+  case 3:
+    alert( 'Too small' );
+    break;
+  case 4:
+    alert( 'Exactly!' );
+    break;
+  case 5:
+    alert( 'Too big' );
+    break;
+  default:
+    alert( "I don't know such values" );
+}
+`
+//Here the switch starts to compare a from the first case variant that is 3. The match fails.
+
+//Then 4. That’s a match, so the execution starts from case 4 until the nearest break.
+
+//If there is no break then the execution continues with the next case without any checks.
+
+
+12.2 //Grouping of “case”
+
+//Several variants of case which share the same code can be grouped.
+
+
+`let a = 3;
+
+switch (a) {
+  case 4:
+    alert('Right!');
+    break;
+
+  case 3: // (*) grouped two cases
+  case 5:
+    alert('Wrong!');
+    alert("Why don't you take a math class?");
+    break;
+
+  default:
+    alert('The result is strange. Really.');
+}`
+
+//Now both 3 and 5 show the same message.
+
+//The ability to “group” cases is a side effect of how switch/case works without break. Here the execution of case 3 starts from the line (*) and goes through case 5, because there’s no break.
+
+
+12.3 // Type matters
+
+//Let’s emphasize that the equality check is always strict. The values must be of the same type to match.
+
+
+
+let arg = prompt("Enter a value?");
+switch (arg) {
+  case '0':
+  case '1':
+    alert( 'One or zero' );
+    break;
+
+  case '2':
+    alert( 'Two' );
+    break;
+
+  case 3:
+    alert( 'Never executes!' );
+    break;
+  default:
+    alert( 'An unknown value' );
+}
+
+
+//For 0, 1, the first alert runs.
+//For 2 the second alert runs.
+//But for 3, the result of the prompt is a string "3", which is not strictly equal === to the number 3. So we’ve got a dead code in case 3! The default variant will execute.
+
+
+Tasks  
+
+
+1. //Rewrite the "switch" into an "if"
+
+//Write the code using if..else which would correspond to the following switch:
+
+
+switch (browser) {
+  case 'Edge':
+    alert( "You've got the Edge!" );
+    break;
+
+  case 'Chrome':
+  case 'Firefox':
+  case 'Safari':
+  case 'Opera':
+    alert( 'Okay we support these browsers too' );
+    break;
+
+  default:
+    alert( 'We hope that this page looks ok!' );
+}
+
+
+if(browser == 'Edge') {
+  alert("You've got the Edge!");
+} else if (browser == 'Chrome'
+ || browser == 'Firefox'
+ || browser == 'Safari'
+ || browser == 'Opera') {
+  alert( 'Okay we support these browsers too' );
+} else {
+  alert( 'We hope that this page looks ok!' );
+}
+
+//But the switch construct is still cleaner and more descriptive.
+
+
+2. //Rewrite "if" into "switch"
+
+//Rewrite the code below using a single switch statement:
+
+
+`let a = +prompt('a?', '');
+
+if (a == 0) {
+  alert( 0 );
+}
+if (a == 1) {
+  alert( 1 );
+}
+
+if (a == 2 || a == 3) {
+  alert( '2,3' );
+}`
+
+
+`let a = +prompt('a?', '');
+
+switch (a) {
+  case 0:
+    alert( 0 );
+    break;
+
+  case 1:
+    alert( 1 );
+    break;
+
+  case 2:
+  case 3:
+    alert( '2,3' );
+    break;
+}`
+
+
+13. //Functions
+
+//Quite often we need to perform a similar action in many places of the script.
+
+//For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
+
+//Functions are the main “building blocks” of the program. They allow the code to be called many times without repetition.
+
+//We’ve already seen examples of built-in functions, like alert(message), prompt(message, default) and confirm(question). But we can create functions of our own as well.
+
+13.1  //Function Declaration
+
+//To create a function we can use a function declaration.
+
+
+function showMessage() {
+  alert( 'Hello everyone!' );
+}
