@@ -2752,3 +2752,6 @@ if (n < 1) {
 } else {
   alert( pow(x, n) );
 }
+
+
+14. // Function expressions
