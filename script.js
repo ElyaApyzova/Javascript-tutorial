@@ -3033,4 +3033,26 @@ ask(
 //This chapter briefly recaps the features of JavaScript that we’ve learned by now, paying special attention to subtle moments.
 
 
+17. // Debugging in the browser
 
+//Before writing more complex code, let’s talk about debugging.
+
+//Debugging is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools – a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
+
+//We’ll be using Chrome here, because it has enough features, most other browsers have a similar process.
+
+
+Summary
+
+//As we can see, there are three main ways to pause a script:
+
+1.//A breakpoint.
+2.//The debugger statements.
+3.//An error (if dev tools are open and the button  is “on”).
+
+//When paused, we can debug: examine variables and trace the code to see where the execution goes wrong.
+
+//There are many more options in developer tools than covered here. The full manual is at https://developers.google.com/web/tools/chrome-devtools.
+
+
+18. 
