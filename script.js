@@ -3067,3 +3067,55 @@ if (n < 0) {
 }
 
 //For a very brief code, one line is allowed, e.g. if (cond) return null. But a code block (the last variant) is usually more readable.
+
+
+19. // Comments
+
+//As we know from the chapter Code structure, comments can be single-line: starting with // and multiline: /* ... */.
+
+//We normally use them to describe how and why the code works.
+
+//At first sight, commenting might be obvious, but novices in programming often use them wrongly.
+
+//Good comments
+
+//So, explanatory comments are usually bad. Which comments are good?
+
+//Describe the architecture
+//Provide a high-level overview of components, how they interact, what’s the control flow in various situations… In short – the bird’s eye view of the code. //There’s a special language UML to build high-level architecture diagrams explaining the code. Definitely worth studying.
+//Document function parameters and usage
+//There’s a special syntax JSDoc to document a function: usage, parameters, returned value.
+//For instance:
+
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+ */
+function pow(x, n) {
+  
+}
+
+//Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+Summary
+
+//An important sign of a good developer is comments: their presence and even their absence.
+
+//Good comments allow us to maintain the code well, come back to it after a delay and use it more effectively.
+
+//Comment this:
+
+//Overall architecture, high-level view.
+//Function usage.
+//Important solutions, especially when not immediately obvious.
+//
+//That tell “how code works” and “what it does”.
+//Put them in only if it’s impossible to make the code so simple and self-descriptive that it doesn’t require them.
+//Comments are also used for auto-documenting tools like JSDoc3: they read them and generate HTML-docs (or docs in another format).
+
+
+
+20. 
