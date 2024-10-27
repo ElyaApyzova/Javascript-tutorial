@@ -3055,4 +3055,15 @@ Summary
 //There are many more options in developer tools than covered here. The full manual is at https://developers.google.com/web/tools/chrome-devtools.
 
 
-18. 
+18.  //Coding Style
+
+//Our code must be as clean and easy to read as possible.
+
+//That is actually the art of programming – to take a complex task and code it in a way that is both correct and human-readable. A good code style greatly assists in that.
+
+//😃 The best variant:
+if (n < 0) {
+  alert(`Power ${n} is not supported`);
+}
+
+//For a very brief code, one line is allowed, e.g. if (cond) return null. But a code block (the last variant) is usually more readable.
