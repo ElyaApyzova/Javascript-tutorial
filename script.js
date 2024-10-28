@@ -3571,3 +3571,71 @@ describe("Raises x to power n", function() {
 });
 
 22. // Polyfills and transpilers
+
+//On the other hand, how to make our modern code work on older engines that don’t understand recent features yet?
+
+//There are two tools for that:
+
+1. //Transpilers.
+2. //Polyfills.
+
+
+22.1 //Transpilers
+
+//A transpiler is a special piece of software that translates source code to another source code. It can parse (“read and understand”) modern code and rewrite it using older syntax constructs, so that it’ll also work in outdated engines.
+
+//E.g. JavaScript before year 2020 didn’t have the “nullish coalescing operator” ??. So, if a visitor uses an outdated browser, it may fail to understand the code like height = height ?? 100.
+
+//A transpiler would analyze our code and rewrite height ?? 100 into (height !== undefined && height !== null) ? height : 100.
+
+// before running the transpiler
+height = height ?? 100;
+
+// after running the transpiler
+height = (height !== undefined && height !== null) ? height : 100;
+
+//Now the rewritten code is suitable for older JavaScript engines.
+
+
+22.2 //Polyfills
+
+//New language features may include not only syntax constructs and operators, but also built-in functions.
+
+//For example, Math.trunc(n) is a function that “cuts off” the decimal part of a number, e.g Math.trunc(1.23) returns 1.
+
+//In some (very outdated) JavaScript engines, there’s no Math.trunc, so such code will fail.
+
+//As we’re talking about new functions, not syntax changes, there’s no need to transpile anything here. We just need to declare the missing function.
+
+//A script that updates/adds new functions is called “polyfill”. It “fills in” the gap and adds missing implementations.
+
+//For this particular case, the polyfill for Math.trunc is a script that implements it, like this:
+
+if (!Math.trunc) { // if no such function
+  // implement it
+  Math.trunc = function(number) {
+    // Math.ceil and Math.floor exist even in ancient JavaScript engines
+    // they are covered later in the tutorial
+    return number < 0 ? Math.ceil(number) : Math.floor(number);
+  };
+}
+
+//JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
+
+//* core js that supports a lot, allows to include only needed features.
+
+Summary
+
+//In this chapter we’d like to motivate you to study modern and even “bleeding-edge” language features, even if they aren’t yet well-supported by JavaScript engines.
+
+//Just don’t forget to use a transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). They’ll ensure that the code works.
+
+//For example, later when you’re familiar with JavaScript, you can setup a code build system based on webpack with the babel-loader plugin.
+
+//Good resources that show the current state of support for various features:
+
+//https://compat-table.github.io/compat-table/es6/ – for pure JavaScript.
+//https://caniuse.com/ – for browser-related functions.
+
+
+23. //Objects: the basics
