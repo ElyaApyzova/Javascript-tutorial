@@ -3639,3 +3639,25 @@ Summary
 
 
 23. //Objects: the basics
+
+23.1  //Literals and properties
+
+//Usually, the figure brackets {...} are used. That declaration is called an object literal.
+
+//We can immediately put some properties into {...} as “key: value” pairs:
+
+let user1 = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
+};
+
+// We can also use multiword property names, but then they must be quoted:
+
+let user2 = {
+  name: "John",
+  age: 30,
+  "likes birds": true  // multiword property name must be quoted
+};
+
+
+23.2 // Square brackets
